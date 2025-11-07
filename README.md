@@ -47,12 +47,13 @@ pip install opencv-python pyttsx3
 
 Clone this repository:
 git clone https://github.com/your-username/face-detection-voice.git
+
 cd face-detection-voice
 
 
 
 Run the script:
-python main.py
+python body.py
 
 
 
