@@ -25,7 +25,7 @@ def main():
     while True:
         ret, frame = cap.read()
         if not ret:
-            print("⚠️ دریافت فریم انجام نشد.")
+            print("⚠️ No frame found.")
             break
 
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -39,17 +39,17 @@ def main():
             entry_count += num_people
             last_speak_time = current_time
 
-            # ذخیره لاگ و اسکرین‌شات
+            
             entry_time = time.strftime("%H-%M-%S", time.localtime())
             cv2.imwrite(f"screenshots/entry_{entry_time}.jpg", frame)
             with open("log.csv", "a", encoding="utf-8") as f:
                 f.write(f"{num_people} people at {entry_time}\n")
 
-        # نمایش چهره‌ها
+        
         for (x, y, w, h) in faces:
             cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)
 
-        # نمایش اطلاعات روی تصویر
+        
         cv2.putText(frame, f"People detected: {num_people}", (20, 50),
                     cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 0), 2)
         cv2.putText(frame, f"Total entries: {entry_count}", (20, 90),
